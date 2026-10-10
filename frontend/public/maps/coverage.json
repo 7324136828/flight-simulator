@@ -1,0 +1,1633 @@
+{
+  "version": 1,
+  "format": "FS5 legacy scenery",
+  "selection": {
+    "complexity": 4,
+    "timeOfDay": "day",
+    "season": "summer"
+  },
+  "files": [
+    {
+      "source": "SCENERY/ANCHEUR.BGL",
+      "bytes": 1247,
+      "sha256": "f16eec37c1acc015e6911ad431996c32b0caf41af1a51453cd15f2cdeaf124df",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 70,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ANCHJPN.BGL",
+      "bytes": 1167,
+      "sha256": "ffa8419b067f23ab0ca0bb6c7eb230d60c950e27c563a812f13072ee7e207bdf",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 70,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ANCHUSA.BGL",
+      "bytes": 1887,
+      "sha256": "ca0b899dfc25f49833c6db165f67d6a49fcefead3aae0e7cf3caa8997cc632a1",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 70,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTAUS.BGL",
+      "bytes": 1583,
+      "sha256": "7f395392712cef9facfac4dd08a51bf1c145de9f38459fca7a7ad04ac5fa760b",
+      "areas": 5,
+      "completedAreas": 5,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 5,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 5,
+        "0x44": 5,
+        "0x22": 5,
+        "0x0d": 5
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTCA.BGL",
+      "bytes": 10319,
+      "sha256": "717e3254bb0e9e8947e4c9123522fae2a3b6bfee9c59d9fdcb0c0972a7919f9f",
+      "areas": 55,
+      "completedAreas": 55,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 101,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 46,
+          "pointer": 7943,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 55,
+        "0x44": 101,
+        "0x22": 55,
+        "0x0d": 55
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTCT.BGL",
+      "bytes": 2927,
+      "sha256": "6141deec90b87508eafbcfd3592ee3901c20544f364b55bc652df4e15ae1e194",
+      "areas": 10,
+      "completedAreas": 10,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 18,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 46,
+          "pointer": 1531,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 10,
+        "0x44": 18,
+        "0x22": 10,
+        "0x0d": 10
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTFRA.BGL",
+      "bytes": 4911,
+      "sha256": "12d3bb50c1b2fe62c8eddd9f9f3db5e7eb25518545efbd092782928f2bddf195",
+      "areas": 19,
+      "completedAreas": 19,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 38,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 46,
+          "pointer": 3027,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 19,
+        "0x44": 38,
+        "0x22": 19,
+        "0x0d": 19
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTGER.BGL",
+      "bytes": 3119,
+      "sha256": "2ff23e3c1276a5e68ef40782a037e0cee6e9e7955b774b24da7bb01cafee35aa",
+      "areas": 21,
+      "completedAreas": 21,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 23,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 21,
+        "0x44": 23,
+        "0x22": 21,
+        "0x0d": 21
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTIL.BGL",
+      "bytes": 5311,
+      "sha256": "d52b055ad1c81a2aadb48af3343d58b66c81e11f7ac676bdcd06e95b77d69556",
+      "areas": 21,
+      "completedAreas": 21,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 48,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 46,
+          "pointer": 3715,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 21,
+        "0x44": 48,
+        "0x22": 21,
+        "0x0d": 21
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTMA.BGL",
+      "bytes": 1919,
+      "sha256": "5fdae2c4fe38b09b04e16a0fe5d1c769acceb360945870ba70cd479baed3ae80",
+      "areas": 3,
+      "completedAreas": 3,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 9,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 46,
+          "pointer": 787,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 3,
+        "0x44": 9,
+        "0x22": 3,
+        "0x0d": 3
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTNH.BGL",
+      "bytes": 1615,
+      "sha256": "11d38f4d1fa71362fc82ce5222103b1cac4f51de198ef4df0423030dfc45a780",
+      "areas": 3,
+      "completedAreas": 3,
+      "polygons": 1,
+      "lines": 0,
+      "lights": 0,
+      "runways": 2,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 46,
+          "pointer": 583,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 3,
+        "0x44": 2,
+        "0x22": 4,
+        "0x0d": 3,
+        "0x77": 2,
+        "0x1a": 1,
+        "0x52": 1,
+        "0x05": 1,
+        "0x0f": 1,
+        "0x10": 3,
+        "0x08": 1,
+        "0x33": 1,
+        "0x51": 1,
+        "0x30": 1,
+        "0x06": 3,
+        "0x07": 7,
+        "0x24": 2,
+        "0x26": 1
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTNV.BGL",
+      "bytes": 1807,
+      "sha256": "2b20cac9f2398299ebbee17dae3acb9b7982d3d7bd89053c50a78388b57d2b1a",
+      "areas": 3,
+      "completedAreas": 3,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 7,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 46,
+          "pointer": 659,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 3,
+        "0x44": 7,
+        "0x22": 3,
+        "0x0d": 3
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTNY.BGL",
+      "bytes": 2319,
+      "sha256": "1a5e16f4dd1c4fcd19a8a3ffc1040bd932a991715eda949ad5db14ed5d5d1fa0",
+      "areas": 5,
+      "completedAreas": 5,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 14,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 46,
+          "pointer": 1155,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 5,
+        "0x44": 14,
+        "0x22": 5,
+        "0x0d": 5
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTRI.BGL",
+      "bytes": 1759,
+      "sha256": "cf5d65ad584bc7a024f416a5f27a8ec2112b30799fe6a455f5f738dd9488acd9",
+      "areas": 4,
+      "completedAreas": 4,
+      "polygons": 1,
+      "lines": 0,
+      "lights": 0,
+      "runways": 3,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 46,
+          "pointer": 701,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 4,
+        "0x44": 3,
+        "0x22": 5,
+        "0x0d": 4,
+        "0x77": 2,
+        "0x1a": 1,
+        "0x52": 1,
+        "0x05": 1,
+        "0x0f": 1,
+        "0x10": 4,
+        "0x08": 1,
+        "0x33": 1,
+        "0x51": 1,
+        "0x30": 1,
+        "0x06": 3,
+        "0x07": 7,
+        "0x24": 2,
+        "0x26": 1
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ARPTWA.BGL",
+      "bytes": 3231,
+      "sha256": "42a17f22ca9a0ebf6af9bf98b64c62185fb3a0b4cd2feb9fd72528911bb0ecf5",
+      "areas": 18,
+      "completedAreas": 18,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 26,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 18,
+        "0x44": 26,
+        "0x22": 18,
+        "0x0d": 18
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ATIS.BGL",
+      "bytes": 6095,
+      "sha256": "664f597dc0600a2e06d176493436e1ff7f053d7bb65e34c16208a9c813da598f",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 74,
+          "pointer": 128,
+          "supported": false
+        },
+        {
+          "headerOffset": 102,
+          "pointer": 2458,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/CHICAGO.BGL",
+      "bytes": 92385,
+      "sha256": "51a96c92c62c1a62623efef440bf0b2a0a58ede1f05f52aacd0a61c6c63e94f5",
+      "areas": 218,
+      "completedAreas": 218,
+      "polygons": 1756,
+      "lines": 474,
+      "lights": 182,
+      "runways": 0,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 26,
+          "pointer": 128,
+          "supported": false
+        },
+        {
+          "headerOffset": 30,
+          "pointer": 196,
+          "supported": false
+        },
+        {
+          "headerOffset": 46,
+          "pointer": 254,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 1508,
+          "supported": true
+        },
+        {
+          "headerOffset": 82,
+          "pointer": 86310,
+          "supported": false
+        }
+      ],
+      "opcodes": {
+        "0x2f": 37,
+        "0x1a": 115,
+        "0x52": 328,
+        "0x30": 30,
+        "0x05": 5,
+        "0x39": 62,
+        "0x18": 39,
+        "0x0f": 64,
+        "0x10": 162,
+        "0x08": 18,
+        "0x5d": 8,
+        "0x38": 63,
+        "0x3e": 558,
+        "0x6b": 23,
+        "0x6c": 127,
+        "0x77": 285,
+        "0x51": 109,
+        "0x69": 133,
+        "0x6a": 347,
+        "0x32": 131,
+        "0x76": 131,
+        "0x62": 4,
+        "0x25": 89,
+        "0x23": 174,
+        "0x24": 76,
+        "0x49": 107,
+        "0x22": 324,
+        "0x80": 4,
+        "0x3f": 129,
+        "0x26": 8,
+        "0x73": 8,
+        "0x29": 25,
+        "0x7d": 64,
+        "0x68": 41,
+        "0x20": 43,
+        "0x0d": 141,
+        "0x50": 48,
+        "0x2a": 574,
+        "0x19": 1,
+        "0x1e": 2,
+        "0x21": 1,
+        "0x81": 4,
+        "0x58": 10,
+        "0x35": 9,
+        "0x55": 3,
+        "0x70": 2,
+        "0x72": 2,
+        "0x1d": 7,
+        "0x37": 6,
+        "0x06": 12,
+        "0x07": 28,
+        "0x33": 6,
+        "0x6d": 5,
+        "0x7a": 21,
+        "0x46": 13,
+        "0x3c": 15,
+        "0x34": 16,
+        "0x82": 1
+      },
+      "issues": [],
+      "derivedRunways": 1
+    },
+    {
+      "source": "SCENERY/CMI.BGL",
+      "bytes": 45987,
+      "sha256": "cfe9b60ef45e48c1a975ea35439b160e65a6a3fdab3f1fd1a1babdea4ec6fa1b",
+      "areas": 400,
+      "completedAreas": 400,
+      "polygons": 368,
+      "lines": 347,
+      "lights": 1,
+      "runways": 0,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 42,
+          "pointer": 128,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 253,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x77": 409,
+        "0x1a": 60,
+        "0x52": 444,
+        "0x38": 57,
+        "0x3e": 177,
+        "0x69": 347,
+        "0x6a": 347,
+        "0x24": 12,
+        "0x32": 16,
+        "0x76": 16,
+        "0x49": 12,
+        "0x22": 79,
+        "0x3f": 15,
+        "0x0d": 17,
+        "0x25": 25,
+        "0x23": 50,
+        "0x73": 4,
+        "0x29": 8,
+        "0x50": 14,
+        "0x2a": 129,
+        "0x46": 12,
+        "0x39": 5,
+        "0x1d": 2,
+        "0x51": 3,
+        "0x0f": 4,
+        "0x10": 4,
+        "0x37": 1,
+        "0x33": 1,
+        "0x30": 1,
+        "0x06": 3,
+        "0x07": 7,
+        "0x26": 1
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/CROPWRLD.BGL",
+      "bytes": 11223,
+      "sha256": "11e5bd9eb2fed96e676450dc5f24ddcdc0d598772ce94c3dbb4f7218b6daf121",
+      "areas": 2,
+      "completedAreas": 2,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 26,
+          "pointer": 188,
+          "supported": false
+        },
+        {
+          "headerOffset": 30,
+          "pointer": 579,
+          "supported": false
+        },
+        {
+          "headerOffset": 34,
+          "pointer": 626,
+          "supported": false
+        },
+        {
+          "headerOffset": 38,
+          "pointer": 769,
+          "supported": false
+        },
+        {
+          "headerOffset": 46,
+          "pointer": 805,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 1660,
+          "supported": true
+        },
+        {
+          "headerOffset": 66,
+          "pointer": 1695,
+          "supported": false
+        },
+        {
+          "headerOffset": 70,
+          "pointer": 1770,
+          "supported": false
+        },
+        {
+          "headerOffset": 106,
+          "pointer": 1804,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/FACILITY.BGL",
+      "bytes": 4084,
+      "sha256": "da14a4b4d026df0819bfcb6a18e292839b47351805d27d8ed82a9705cefc5ed8",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 66,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ILS_EUR.BGL",
+      "bytes": 1302,
+      "sha256": "e6e7699ed277815549cad1f093030f2cc0e7610b16bc3d118aa31e761be536c5",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/ILS_USA.BGL",
+      "bytes": 3040,
+      "sha256": "5363ec3d15d0b727924b25f92a788472840055ce2a4b9aabcf0cb52671aea2de",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/LA.BGL",
+      "bytes": 153478,
+      "sha256": "33e80b83587b7dc256b3d9fa48b64a6fb823a6cb45652ca23087cf3067a03919",
+      "areas": 801,
+      "completedAreas": 800,
+      "polygons": 1716,
+      "lines": 1338,
+      "lights": 5,
+      "runways": 1,
+      "status": "partial",
+      "sections": [
+        {
+          "headerOffset": 30,
+          "pointer": 128,
+          "supported": false
+        },
+        {
+          "headerOffset": 34,
+          "pointer": 322,
+          "supported": false
+        },
+        {
+          "headerOffset": 38,
+          "pointer": 424,
+          "supported": false
+        },
+        {
+          "headerOffset": 42,
+          "pointer": 684,
+          "supported": false
+        },
+        {
+          "headerOffset": 46,
+          "pointer": 2902,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 4008,
+          "supported": true
+        },
+        {
+          "headerOffset": 102,
+          "pointer": 153394,
+          "supported": false
+        }
+      ],
+      "opcodes": {
+        "0x77": 807,
+        "0x1a": 142,
+        "0x52": 691,
+        "0x39": 86,
+        "0x18": 121,
+        "0x38": 130,
+        "0x3e": 497,
+        "0x70": 5,
+        "0x55": 5,
+        "0x51": 569,
+        "0x6e": 60,
+        "0x6f": 111,
+        "0x33": 44,
+        "0x30": 6,
+        "0x06": 18,
+        "0x07": 42,
+        "0x24": 282,
+        "0x26": 107,
+        "0x22": 300,
+        "0x0d": 160,
+        "0x69": 527,
+        "0x6a": 1227,
+        "0x32": 140,
+        "0x76": 140,
+        "0x25": 756,
+        "0x23": 116,
+        "0x49": 58,
+        "0x1d": 10,
+        "0x0f": 59,
+        "0x10": 105,
+        "0x3f": 49,
+        "0x29": 96,
+        "0x50": 169,
+        "0x2a": 892,
+        "0x37": 5,
+        "0x2f": 4,
+        "0x44": 1,
+        "0x7d": 27,
+        "0x7a": 27,
+        "0x56": 1
+      },
+      "issues": [
+        {
+          "area": 153168,
+          "offset": 153180,
+          "reason": "Unsupported opcode 0x56"
+        }
+      ]
+    },
+    {
+      "source": "SCENERY/MAGDEC.BGL",
+      "bytes": 130468,
+      "sha256": "650af2e63222d77d4746b55ad8902285ea8ca8e7228df457bb8eb0f35225c4be",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 110,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/MKB_EUR.BGL",
+      "bytes": 415,
+      "sha256": "5dde906e2e10d34c3450836f90f3e7d7ec209eb52db0cfe64218bcf7a7a6354b",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 102,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/MKB_USA.BGL",
+      "bytes": 1070,
+      "sha256": "7d2ee1bfc32ae6faf32dbfb88825bb64c88a0ea8171ffb976ad3eb54971fa256",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 102,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/MUNICH.BGL",
+      "bytes": 222110,
+      "sha256": "5e3eb51d5c4fef2c1f9d00f5a7e5252760a5457a8933bc8d9b5e279ee93b0c7d",
+      "areas": 1756,
+      "completedAreas": 1755,
+      "polygons": 1697,
+      "lines": 3864,
+      "lights": 2,
+      "runways": 0,
+      "status": "partial",
+      "sections": [
+        {
+          "headerOffset": 30,
+          "pointer": 128,
+          "supported": false
+        },
+        {
+          "headerOffset": 34,
+          "pointer": 470,
+          "supported": false
+        },
+        {
+          "headerOffset": 38,
+          "pointer": 648,
+          "supported": false
+        },
+        {
+          "headerOffset": 42,
+          "pointer": 742,
+          "supported": false
+        },
+        {
+          "headerOffset": 46,
+          "pointer": 1334,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 2650,
+          "supported": true
+        },
+        {
+          "headerOffset": 102,
+          "pointer": 222108,
+          "supported": false
+        }
+      ],
+      "opcodes": {
+        "0x77": 1755,
+        "0x1a": 57,
+        "0x52": 1604,
+        "0x39": 11,
+        "0x18": 9,
+        "0x3e": 374,
+        "0x6b": 332,
+        "0x6c": 1013,
+        "0x38": 53,
+        "0x70": 3,
+        "0x55": 3,
+        "0x51": 1188,
+        "0x6e": 30,
+        "0x6f": 61,
+        "0x33": 24,
+        "0x30": 4,
+        "0x06": 12,
+        "0x07": 28,
+        "0x24": 364,
+        "0x26": 179,
+        "0x22": 315,
+        "0x0d": 203,
+        "0x69": 1173,
+        "0x6a": 2790,
+        "0x32": 195,
+        "0x76": 195,
+        "0x49": 25,
+        "0x3f": 22,
+        "0x25": 1111,
+        "0x23": 96,
+        "0x1d": 8,
+        "0x0f": 18,
+        "0x10": 21,
+        "0x37": 2,
+        "0x29": 176,
+        "0x50": 202,
+        "0x2a": 1174,
+        "0x7d": 16,
+        "0x68": 16,
+        "0x20": 16,
+        "0x56": 1
+      },
+      "issues": [
+        {
+          "area": 221850,
+          "offset": 221862,
+          "reason": "Unsupported opcode 0x56"
+        }
+      ]
+    },
+    {
+      "source": "SCENERY/NDB_EUR.BGL",
+      "bytes": 1799,
+      "sha256": "c4e006c697ce270362141d6c9fe65830571efa2e1bde00c86ba14ff87fb1ebe3",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 78,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/NDB_NA.BGL",
+      "bytes": 1407,
+      "sha256": "3fa46f6b6a23da29e0d90d18231c7060590a8ec1af98ce922a624218ede812b5",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 78,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/NDB_USA.BGL",
+      "bytes": 91089,
+      "sha256": "7fdaff7fcd2c1c8b63c1f9ee5eaf93191a4f8d4df4bc2519997bac3002340a98",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 78,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/NYC.BGL",
+      "bytes": 78970,
+      "sha256": "ef02f4540fae992c4380a19418c9e488c2f0a4b6a66a0d121cb515bb131c88e2",
+      "areas": 513,
+      "completedAreas": 513,
+      "polygons": 940,
+      "lines": 1435,
+      "lights": 5,
+      "runways": 0,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 26,
+          "pointer": 128,
+          "supported": false
+        },
+        {
+          "headerOffset": 46,
+          "pointer": 234,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 898,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x77": 516,
+        "0x1a": 69,
+        "0x52": 380,
+        "0x38": 59,
+        "0x05": 10,
+        "0x0f": 43,
+        "0x10": 152,
+        "0x08": 10,
+        "0x30": 10,
+        "0x32": 173,
+        "0x76": 173,
+        "0x23": 57,
+        "0x51": 281,
+        "0x22": 400,
+        "0x0e": 13,
+        "0x24": 165,
+        "0x0d": 178,
+        "0x18": 43,
+        "0x3e": 134,
+        "0x6b": 26,
+        "0x6c": 218,
+        "0x69": 260,
+        "0x6a": 1097,
+        "0x33": 170,
+        "0x49": 158,
+        "0x3f": 166,
+        "0x06": 15,
+        "0x07": 35,
+        "0x26": 5,
+        "0x39": 16,
+        "0x37": 5,
+        "0x25": 25,
+        "0x1d": 6,
+        "0x6e": 60,
+        "0x6f": 120
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/PARIS.BGL",
+      "bytes": 32687,
+      "sha256": "0a555d2621b4838bf17276b3fa722912399cc5c5a97d38ced1f30235eb08361f",
+      "areas": 185,
+      "completedAreas": 185,
+      "polygons": 94,
+      "lines": 563,
+      "lights": 4,
+      "runways": 0,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 46,
+          "pointer": 128,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 2762,
+          "supported": true
+        },
+        {
+          "headerOffset": 106,
+          "pointer": 31405,
+          "supported": false
+        }
+      ],
+      "opcodes": {
+        "0x52": 187,
+        "0x77": 193,
+        "0x1a": 28,
+        "0x38": 13,
+        "0x3e": 71,
+        "0x18": 3,
+        "0x6b": 87,
+        "0x6c": 344,
+        "0x51": 96,
+        "0x69": 64,
+        "0x6a": 219,
+        "0x32": 21,
+        "0x76": 21,
+        "0x33": 18,
+        "0x49": 1,
+        "0x22": 102,
+        "0x3f": 17,
+        "0x0d": 25,
+        "0x29": 1,
+        "0x50": 1,
+        "0x2a": 10,
+        "0x23": 63,
+        "0x0f": 112,
+        "0x10": 296,
+        "0x39": 20,
+        "0x30": 4,
+        "0x06": 12,
+        "0x07": 28,
+        "0x24": 8,
+        "0x26": 4,
+        "0x25": 8,
+        "0x1d": 8,
+        "0x37": 4
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/RENOSTED.BGL",
+      "bytes": 1983,
+      "sha256": "401da538bb078ffe2400df454ccbf9e937fb0f5dfffa3249b75e4c1f0b05d204",
+      "areas": 2,
+      "completedAreas": 2,
+      "polygons": 15,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "object-section-decoded",
+      "sections": [
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x74": 2,
+        "0x77": 2,
+        "0x1a": 1,
+        "0x52": 1,
+        "0x3e": 15,
+        "0x38": 1,
+        "0x22": 3,
+        "0x0d": 2,
+        "0x33": 1,
+        "0x51": 1,
+        "0x30": 1,
+        "0x06": 3,
+        "0x07": 7,
+        "0x24": 2,
+        "0x26": 1
+      },
+      "issues": []
+    },
+    {
+      "source": "SCENERY/SEATTLE.BGL",
+      "bytes": 109878,
+      "sha256": "17a037ec72c0f756323085ebfe4ab53bca085d89fe98a927dd6f2d26cdb9546a",
+      "areas": 419,
+      "completedAreas": 418,
+      "polygons": 1303,
+      "lines": 618,
+      "lights": 5,
+      "runways": 0,
+      "status": "partial",
+      "sections": [
+        {
+          "headerOffset": 30,
+          "pointer": 128,
+          "supported": false
+        },
+        {
+          "headerOffset": 34,
+          "pointer": 478,
+          "supported": false
+        },
+        {
+          "headerOffset": 38,
+          "pointer": 666,
+          "supported": false
+        },
+        {
+          "headerOffset": 42,
+          "pointer": 760,
+          "supported": false
+        },
+        {
+          "headerOffset": 46,
+          "pointer": 1758,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 2602,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x77": 417,
+        "0x1a": 118,
+        "0x52": 327,
+        "0x39": 93,
+        "0x18": 98,
+        "0x38": 111,
+        "0x3e": 255,
+        "0x70": 5,
+        "0x55": 5,
+        "0x51": 211,
+        "0x6e": 55,
+        "0x6f": 108,
+        "0x33": 40,
+        "0x30": 5,
+        "0x06": 15,
+        "0x07": 35,
+        "0x24": 189,
+        "0x26": 69,
+        "0x22": 309,
+        "0x0d": 138,
+        "0x69": 180,
+        "0x6a": 510,
+        "0x32": 126,
+        "0x76": 126,
+        "0x49": 82,
+        "0x3f": 59,
+        "0x25": 468,
+        "0x23": 143,
+        "0x1d": 8,
+        "0x0f": 38,
+        "0x10": 68,
+        "0x37": 5,
+        "0x3c": 1,
+        "0x34": 1,
+        "0x73": 1,
+        "0x29": 67,
+        "0x50": 79,
+        "0x2a": 614,
+        "0x81": 2,
+        "0x7d": 16,
+        "0x7a": 16,
+        "0x56": 1
+      },
+      "issues": [
+        {
+          "area": 109572,
+          "offset": 109584,
+          "reason": "Unsupported opcode 0x56"
+        }
+      ]
+    },
+    {
+      "source": "SCENERY/SF.BGL",
+      "bytes": 47343,
+      "sha256": "8c40ac514409ac3f580a6216a98fc32aaa51a912d7ad00a17e5b5cb07c32882b",
+      "areas": 179,
+      "completedAreas": 178,
+      "polygons": 370,
+      "lines": 643,
+      "lights": 18,
+      "runways": 2,
+      "status": "partial",
+      "sections": [
+        {
+          "headerOffset": 26,
+          "pointer": 128,
+          "supported": false
+        },
+        {
+          "headerOffset": 30,
+          "pointer": 153,
+          "supported": false
+        },
+        {
+          "headerOffset": 34,
+          "pointer": 210,
+          "supported": false
+        },
+        {
+          "headerOffset": 38,
+          "pointer": 211,
+          "supported": false
+        },
+        {
+          "headerOffset": 42,
+          "pointer": 762,
+          "supported": false
+        },
+        {
+          "headerOffset": 46,
+          "pointer": 1049,
+          "supported": false
+        },
+        {
+          "headerOffset": 58,
+          "pointer": 3656,
+          "supported": true
+        },
+        {
+          "headerOffset": 82,
+          "pointer": 44977,
+          "supported": false
+        },
+        {
+          "headerOffset": 102,
+          "pointer": 3410,
+          "supported": false
+        },
+        {
+          "headerOffset": 106,
+          "pointer": 44687,
+          "supported": false
+        }
+      ],
+      "opcodes": {
+        "0x32": 26,
+        "0x76": 26,
+        "0x3c": 4,
+        "0x34": 2,
+        "0x73": 2,
+        "0x29": 14,
+        "0x25": 19,
+        "0x23": 56,
+        "0x50": 17,
+        "0x2a": 215,
+        "0x22": 97,
+        "0x52": 184,
+        "0x3e": 150,
+        "0x38": 38,
+        "0x1a": 50,
+        "0x46": 4,
+        "0x51": 52,
+        "0x30": 9,
+        "0x0f": 22,
+        "0x10": 65,
+        "0x35": 2,
+        "0x3f": 11,
+        "0x0d": 28,
+        "0x77": 179,
+        "0x6b": 4,
+        "0x6c": 23,
+        "0x69": 107,
+        "0x6a": 510,
+        "0x7f": 1,
+        "0x18": 16,
+        "0x39": 17,
+        "0x33": 11,
+        "0x49": 1,
+        "0x24": 13,
+        "0x6e": 40,
+        "0x6f": 110,
+        "0x06": 6,
+        "0x07": 14,
+        "0x26": 2,
+        "0x37": 2,
+        "0x74": 1,
+        "0x44": 2
+      },
+      "issues": [
+        {
+          "area": 19658,
+          "offset": 19712,
+          "reason": "Unsupported opcode 0x7f"
+        }
+      ]
+    },
+    {
+      "source": "SCENERY/SFTHERM.BGL",
+      "bytes": 1631,
+      "sha256": "7ccd24149cd5dbdac4540da2a561136d6daedc021c701290a3beb8946e84f03b",
+      "areas": 1,
+      "completedAreas": 0,
+      "polygons": 4,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "partial",
+      "sections": [
+        {
+          "headerOffset": 58,
+          "pointer": 128,
+          "supported": true
+        }
+      ],
+      "opcodes": {
+        "0x77": 1,
+        "0x52": 1,
+        "0x46": 4,
+        "0x1a": 4,
+        "0x05": 4,
+        "0x0f": 4,
+        "0x10": 12,
+        "0x08": 4,
+        "0x22": 4,
+        "0x56": 1
+      },
+      "issues": [
+        {
+          "area": 138,
+          "offset": 274,
+          "reason": "Unsupported opcode 0x56"
+        }
+      ]
+    },
+    {
+      "source": "SCENERY/TIMEZONE.BGL",
+      "bytes": 2931,
+      "sha256": "dad7e5a6ba4f4bf4520570ea63cbe22255770b89226f6d487ff6789d1ad59121",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 102,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/VOR_EUR.BGL",
+      "bytes": 2857,
+      "sha256": "1bb5f9f9c358c0ea24df5b98a906cedf9fb4a3ed631b169a4c2d4c3da122dc11",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/VOR_NA.BGL",
+      "bytes": 1760,
+      "sha256": "d99dd504d401d167bf2132ea6d2aabf4ba0e16c0a5a4584aa2cb696375e4a4ed",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/VOR_USA.BGL",
+      "bytes": 63860,
+      "sha256": "4adb6a3d2f1ac5b161a740e94049e2f3cd6765f07b8133923d88cb9a19d5d465",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/WORLD/SCENERY/NORTH.BGL",
+      "bytes": 83618,
+      "sha256": "6dff4e5d5e8c7970f9463e2e0302978c1fc5134eb9d6dbca36d350dbb06f8c70",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 26,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/WORLD/SCENERY/SOUTH.BGL",
+      "bytes": 337214,
+      "sha256": "bc62a8c569c3111bb7145df5bca0f5f897cf762dfb09b79c653291d682e1643e",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [
+        {
+          "headerOffset": 26,
+          "pointer": 128,
+          "supported": false
+        }
+      ],
+      "opcodes": {},
+      "issues": []
+    },
+    {
+      "source": "SCENERY/WORLD1.BGL",
+      "bytes": 128,
+      "sha256": "38723a2e5e8a17aa7950dc008209944e898f69a7bd10a23c839d341e935fd5ca",
+      "areas": 0,
+      "completedAreas": 0,
+      "polygons": 0,
+      "lines": 0,
+      "lights": 0,
+      "runways": 0,
+      "status": "no-object-section",
+      "sections": [],
+      "opcodes": {},
+      "issues": []
+    }
+  ],
+  "totals": {
+    "files": 43,
+    "areas": 4643,
+    "completedAreas": 4638,
+    "polygons": 8265,
+    "lines": 9282,
+    "runways": 298
+  },
+  "unsupported": [
+    "Non-object sections, including base-world terrain and navigation data.",
+    "0x56 thermal areas; 0x7f synthetic city record.",
+    "Legacy texture UV detail and animated/library/driver objects."
+  ]
+}

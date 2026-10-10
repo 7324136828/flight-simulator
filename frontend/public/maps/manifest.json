@@ -1,0 +1,269 @@
+{
+  "version": 1,
+  "defaultMap": "chicago",
+  "maps": [
+    {
+      "id": "chicago",
+      "label": "Chicago · Meigs Field",
+      "file": "chicago.json",
+      "runways": 49,
+      "polygons": 1750,
+      "lines": 474,
+      "sourceFiles": [
+        "SCENERY/CHICAGO.BGL",
+        "SCENERY/ARPTIL.BGL"
+      ],
+      "defaultRunway": "scenery-chicago-bgl-18197"
+    },
+    {
+      "id": "san-francisco",
+      "label": "San Francisco",
+      "file": "san-francisco.json",
+      "runways": 103,
+      "polygons": 374,
+      "lines": 643,
+      "sourceFiles": [
+        "SCENERY/SF.BGL",
+        "SCENERY/SFTHERM.BGL",
+        "SCENERY/ARPTCA.BGL"
+      ],
+      "defaultRunway": "scenery-arptca-bgl-4635"
+    },
+    {
+      "id": "los-angeles",
+      "label": "Los Angeles",
+      "file": "los-angeles.json",
+      "runways": 102,
+      "polygons": 1716,
+      "lines": 1338,
+      "sourceFiles": [
+        "SCENERY/LA.BGL",
+        "SCENERY/ARPTCA.BGL"
+      ],
+      "defaultRunway": "scenery-arptca-bgl-1202"
+    },
+    {
+      "id": "new-york",
+      "label": "New York",
+      "file": "new-york.json",
+      "runways": 14,
+      "polygons": 940,
+      "lines": 1435,
+      "sourceFiles": [
+        "SCENERY/NYC.BGL",
+        "SCENERY/ARPTNY.BGL"
+      ],
+      "defaultRunway": "scenery-arptny-bgl-592"
+    },
+    {
+      "id": "paris",
+      "label": "Paris",
+      "file": "paris.json",
+      "runways": 38,
+      "polygons": 94,
+      "lines": 563,
+      "sourceFiles": [
+        "SCENERY/PARIS.BGL",
+        "SCENERY/ARPTFRA.BGL"
+      ],
+      "defaultRunway": "scenery-arptfra-bgl-1720"
+    },
+    {
+      "id": "munich",
+      "label": "Munich",
+      "file": "munich.json",
+      "runways": 23,
+      "polygons": 1697,
+      "lines": 3864,
+      "sourceFiles": [
+        "SCENERY/MUNICH.BGL",
+        "SCENERY/ARPTGER.BGL"
+      ],
+      "defaultRunway": "scenery-arptger-bgl-1520"
+    },
+    {
+      "id": "seattle",
+      "label": "Seattle",
+      "file": "seattle.json",
+      "runways": 26,
+      "polygons": 1303,
+      "lines": 618,
+      "sourceFiles": [
+        "SCENERY/SEATTLE.BGL",
+        "SCENERY/ARPTWA.BGL"
+      ],
+      "defaultRunway": "scenery-arptwa-bgl-1512"
+    },
+    {
+      "id": "champaign",
+      "label": "Champaign",
+      "file": "champaign.json",
+      "runways": 48,
+      "polygons": 368,
+      "lines": 347,
+      "sourceFiles": [
+        "SCENERY/CMI.BGL",
+        "SCENERY/ARPTIL.BGL"
+      ],
+      "defaultRunway": "scenery-arptil-bgl-528"
+    },
+    {
+      "id": "reno",
+      "label": "Reno · Stead",
+      "file": "reno.json",
+      "runways": 7,
+      "polygons": 15,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/RENOSTED.BGL",
+        "SCENERY/ARPTNV.BGL"
+      ],
+      "defaultRunway": "scenery-arptnv-bgl-528"
+    },
+    {
+      "id": "arptaus",
+      "label": "Austria · airports",
+      "file": "arptaus.json",
+      "runways": 5,
+      "polygons": 0,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTAUS.BGL"
+      ],
+      "defaultRunway": "scenery-arptaus-bgl-160"
+    },
+    {
+      "id": "arptca",
+      "label": "California · airports",
+      "file": "arptca.json",
+      "runways": 101,
+      "polygons": 0,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTCA.BGL"
+      ],
+      "defaultRunway": "scenery-arptca-bgl-178"
+    },
+    {
+      "id": "arptct",
+      "label": "Connecticut · airports",
+      "file": "arptct.json",
+      "runways": 18,
+      "polygons": 0,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTCT.BGL"
+      ],
+      "defaultRunway": "scenery-arptct-bgl-160"
+    },
+    {
+      "id": "arptfra",
+      "label": "France · airports",
+      "file": "arptfra.json",
+      "runways": 38,
+      "polygons": 0,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTFRA.BGL"
+      ],
+      "defaultRunway": "scenery-arptfra-bgl-160"
+    },
+    {
+      "id": "arptger",
+      "label": "Germany · airports",
+      "file": "arptger.json",
+      "runways": 23,
+      "polygons": 0,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTGER.BGL"
+      ],
+      "defaultRunway": "scenery-arptger-bgl-160"
+    },
+    {
+      "id": "arptil",
+      "label": "Illinois · airports",
+      "file": "arptil.json",
+      "runways": 48,
+      "polygons": 0,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTIL.BGL"
+      ],
+      "defaultRunway": "scenery-arptil-bgl-160"
+    },
+    {
+      "id": "arptma",
+      "label": "Massachusetts · airports",
+      "file": "arptma.json",
+      "runways": 9,
+      "polygons": 0,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTMA.BGL"
+      ],
+      "defaultRunway": "scenery-arptma-bgl-160"
+    },
+    {
+      "id": "arptnh",
+      "label": "New Hampshire · airports",
+      "file": "arptnh.json",
+      "runways": 2,
+      "polygons": 1,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTNH.BGL"
+      ],
+      "defaultRunway": "scenery-arptnh-bgl-160"
+    },
+    {
+      "id": "arptnv",
+      "label": "Nevada · airports",
+      "file": "arptnv.json",
+      "runways": 7,
+      "polygons": 0,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTNV.BGL"
+      ],
+      "defaultRunway": "scenery-arptnv-bgl-160"
+    },
+    {
+      "id": "arptny",
+      "label": "New York State · airports",
+      "file": "arptny.json",
+      "runways": 14,
+      "polygons": 0,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTNY.BGL"
+      ],
+      "defaultRunway": "scenery-arptny-bgl-160"
+    },
+    {
+      "id": "arptri",
+      "label": "Rhode Island · airports",
+      "file": "arptri.json",
+      "runways": 3,
+      "polygons": 1,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTRI.BGL"
+      ],
+      "defaultRunway": "scenery-arptri-bgl-178"
+    },
+    {
+      "id": "arptwa",
+      "label": "Washington State · airports",
+      "file": "arptwa.json",
+      "runways": 26,
+      "polygons": 0,
+      "lines": 0,
+      "sourceFiles": [
+        "SCENERY/ARPTWA.BGL"
+      ],
+      "defaultRunway": "scenery-arptwa-bgl-160"
+    }
+  ],
+  "coverage": "coverage.json"
+}
