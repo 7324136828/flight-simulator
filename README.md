@@ -202,6 +202,19 @@ npm run typecheck
 npm run build
 ```
 
+### Browser End-to-End Tests
+
+```powershell
+cd e2e
+npm ci
+npm run typecheck
+npm test
+# Open the saved report when needed:
+npx playwright show-report
+```
+
+Browser tests print live progress and save an HTML report without starting a report server. The suite has a 10-minute limit; the release workflow also limits the browser-test step to 15 minutes and uploads the report and failure diagnostics.
+
 ### Original Scenery Engine Tests
 
 ```powershell
