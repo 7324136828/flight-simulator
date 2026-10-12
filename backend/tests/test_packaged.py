@@ -17,6 +17,7 @@ import httpx
 
 from backend import packaged
 from backend.network import discover_lan_ipv4
+from backend.tests.process_support import stop_process_tree
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 ENTRYPOINT = """
@@ -94,25 +95,7 @@ class PackagedRuntimeTests(unittest.TestCase):
                         self.fail("Portable frontend/API did not become ready")
                     yield client
             finally:
-                if process.poll() is None:
-                    if os.name == "nt":
-                        # Windows venv python.exe can be a redirector with a
-                        # child interpreter. Stop the owned tree so the child
-                        # releases its working directory before fixture cleanup.
-                        subprocess.run(
-                            ["taskkill.exe", "/PID", str(process.pid), "/T", "/F"],
-                            capture_output=True, check=False, timeout=10,
-                            creationflags=subprocess.CREATE_NO_WINDOW,
-                        )
-                    else:
-                        process.terminate()
-                    try:
-                        process.wait(timeout=5)
-                    except subprocess.TimeoutExpired:
-                        process.kill()
-                        process.wait(timeout=5)
-                else:
-                    process.wait(timeout=5)
+                stop_process_tree(process)
 
     def make_mapping(self, root: Path, frontend: int = 3000, backend: int = 8000) -> Path:
         path = root / "port_mapping.json"

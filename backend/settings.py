@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 import os
 import tempfile
+import time
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -34,6 +36,26 @@ def default_data_directory() -> Path:
     return root.expanduser().resolve() / APP_NAME
 
 
+def _publish_with_retry(operation: Callable[[], object]) -> None:
+    # Windows antivirus/indexers can briefly deny access to a closed file.
+    # Keep publication atomic and report permanent failures after a bounded wait.
+    if os.name != "nt":
+        operation()
+        return
+    deadline = time.monotonic() + 5.0
+    while True:
+        try:
+            operation()
+            return
+        except OSError as error:
+            if getattr(error, "winerror", None) not in (5, 32):
+                raise
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise
+            time.sleep(min(0.05, remaining))
+
+
 def _write_json(path: Path, values: dict, *, overwrite: bool = False) -> None:
     # Publish complete JSON so another startup never reads a partial file.
     temporary_path: Path | None = None
@@ -46,19 +68,19 @@ def _write_json(path: Path, values: dict, *, overwrite: bool = False) -> None:
             json.dump(values, settings_file, indent=2)
             settings_file.write("\n")
         if overwrite:
-            temporary_path.replace(path)
+            _publish_with_retry(lambda: temporary_path.replace(path))
             return
         try:
             if os.name == "nt":
                 # Windows rename fails if the destination already exists.
-                temporary_path.rename(path)
+                _publish_with_retry(lambda: temporary_path.rename(path))
             else:
                 os.link(temporary_path, path)
         except FileExistsError:
             pass
     finally:
         if temporary_path is not None:
-            temporary_path.unlink(missing_ok=True)
+            _publish_with_retry(lambda: temporary_path.unlink(missing_ok=True))
 
 
 def _create_default_settings(path: Path, data_directory: Path) -> None:

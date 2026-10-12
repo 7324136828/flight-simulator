@@ -17,6 +17,7 @@ import httpx
 
 from backend.network import discover_lan_ipv4
 from backend.settings import APP_NAME
+from backend.tests.process_support import cleanup_directory, stop_process_tree
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
@@ -32,7 +33,7 @@ def free_ports() -> tuple[int, int]:
 class FrozenPackageTests(unittest.TestCase):
     def setUp(self) -> None:
         directory = tempfile.TemporaryDirectory(prefix="frozen-package-")
-        self.addCleanup(directory.cleanup)
+        self.addCleanup(cleanup_directory, directory)
         self.root = Path(directory.name).resolve()
         self.package = self.root / "renamed portable package"
         self.package.mkdir()
@@ -104,18 +105,7 @@ class FrozenPackageTests(unittest.TestCase):
                         self.fail("Frozen run.bat did not become ready:\n" + log.read().decode("utf-8", errors="replace"))
                     yield client
             finally:
-                if process.poll() is None:
-                    # The launcher owns a PyInstaller parent and extracted child.
-                    # Terminating cmd.exe alone would leave both servers running.
-                    result = subprocess.run(
-                        ["taskkill", "/PID", str(process.pid), "/T", "/F"],
-                        capture_output=True,
-                        timeout=10,
-                        creationflags=subprocess.CREATE_NO_WINDOW,
-                    )
-                    if result.returncode and process.poll() is None:
-                        self.fail("Could not stop the frozen launcher process tree:\n" + result.stderr.decode(errors="replace"))
-                process.wait(timeout=10)
+                stop_process_tree(process)
 
     def assert_maps(self, client: httpx.Client, frontend: int, backend: int, *, static: bool) -> None:
         frontend_url = f"http://127.0.0.1:{frontend}"
