@@ -4,16 +4,28 @@ import { createAircraft } from './aircraft.js';
 import { createScenery } from './scenery.js';
 import { snapShadowTarget } from './render-stability.js';
 
+function isSoftwareRenderer(context) {
+  try {
+    const info = context.getExtension('WEBGL_debug_renderer_info');
+    if (!info) return false;
+    const name = context.getParameter(info.UNMASKED_RENDERER_WEBGL);
+    return /swiftshader|llvmpipe|softpipe|software|microsoft basic render|\bwarp\b/i.test(name);
+  } catch {
+    return false;
+  }
+}
+
 export function createWorld(canvas, map, selected) {
   const renderer = new THREE.WebGLRenderer({
     canvas, antialias: true, powerPreference: 'high-performance', logarithmicDepthBuffer: true,
   });
   const compact = window.innerWidth < 800;
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, compact ? 1.5 : 2));
+  const softwareRendering = isSoftwareRenderer(renderer.getContext());
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, softwareRendering ? 1 : compact ? 1.5 : 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.35;
-  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.enabled = !softwareRendering;
   renderer.shadowMap.type = THREE.PCFShadowMap;
 
   const scene = new THREE.Scene();
@@ -25,7 +37,7 @@ export function createWorld(canvas, map, selected) {
   scene.add(ambient);
   const sun = new THREE.DirectionalLight(0xffedd0, 2.2);
   sun.position.set(-1400, 1700, 1100);
-  sun.castShadow = true;
+  sun.castShadow = !softwareRendering;
   sun.shadow.mapSize.set(compact ? 1024 : 2048, compact ? 1024 : 2048);
   sun.shadow.camera.left = -1000;
   sun.shadow.camera.right = 1000;
@@ -62,7 +74,9 @@ export function createWorld(canvas, map, selected) {
   scene.add(model);
 
   const sunDirection = new THREE.Vector3();
-  const pmrem = new THREE.PMREMGenerator(renderer);
+  // Three r186's GGX environment filtering is costly on software GPUs.
+  // Keep the sky and direct lights there without baking reflection lighting.
+  const pmrem = softwareRendering ? null : new THREE.PMREMGenerator(renderer);
   const environments = new Map();
   const backgrounds = new Map();
   function setLighting(preset = 'day') {
@@ -78,24 +92,26 @@ export function createWorld(canvas, map, selected) {
     scene.fog.color.set(sunset ? 0xbaae9c : 0xb9d0ce);
     scene.fog.density = sunset ? 0.00010 : 0.00008;
     renderer.toneMappingExposure = sunset ? 0.60 : 0.65;
-    if (!environments.has(preset)) {
+    if (!backgrounds.has(preset)) {
       const environmentScene = new THREE.Scene();
       environmentScene.add(sky.clone());
       // Bake the atmospheric shader once per lighting preset. A simple skybox
       // keeps the full-screen cloud shader out of every gameplay frame.
-      const background = new THREE.WebGLCubeRenderTarget(compact ? 256 : 512, {
+      const background = new THREE.WebGLCubeRenderTarget(softwareRendering ? 128 : compact ? 256 : 512, {
         type: THREE.HalfFloatType, generateMipmaps: true, minFilter: THREE.LinearMipmapLinearFilter,
       });
       const capture = new THREE.CubeCamera(1, 30000, background);
       capture.update(renderer, environmentScene);
       backgrounds.set(preset, background);
-      uniforms.showSunDisc.value = false;
-      const environment = pmrem.fromScene(environmentScene, 0.04, 1, 30000);
-      uniforms.showSunDisc.value = true;
-      environments.set(preset, environment);
+      if (pmrem) {
+        uniforms.showSunDisc.value = false;
+        const environment = pmrem.fromScene(environmentScene, 0.04, 1, 30000);
+        uniforms.showSunDisc.value = true;
+        environments.set(preset, environment);
+      }
     }
     scene.background = backgrounds.get(preset).texture;
-    scene.environment = environments.get(preset).texture;
+    scene.environment = environments.get(preset)?.texture ?? null;
     scene.environmentIntensity = sunset ? 0.45 : 0.65;
   }
   setLighting();
@@ -169,7 +185,7 @@ export function createWorld(canvas, map, selected) {
       backgrounds.forEach(background => background.dispose());
       sky.geometry.dispose();
       sky.material.dispose();
-      pmrem.dispose();
+      pmrem?.dispose();
       // Render targets need the renderer's WebGL properties during disposal.
       renderer.dispose();
     } };
