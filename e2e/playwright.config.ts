@@ -40,7 +40,12 @@ export default defineConfig({
   fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
-  reporter: 'html',
+  // Bound the whole run, including server startup and retries.
+  globalTimeout: 10 * 60_000,
+  reporter: [
+    ['line'],
+    ['html', { open: 'never' }],
+  ],
   use: {
     baseURL: frontendUrl,
     trace: 'on-first-retry',

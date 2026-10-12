@@ -101,11 +101,25 @@ jobs:
 
       - name: Run browser tests
         working-directory: e2e
+        # Also bound browser/server teardown if a child process stops responding.
+        timeout-minutes: 15
         run: |
           npm.cmd run typecheck
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           npm.cmd test
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Upload browser test diagnostics
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: browser-test-diagnostics
+          path: |
+            e2e/playwright-report/
+            e2e/test-results/**/trace.zip
+            e2e/test-results/**/error-context.md
+          if-no-files-found: ignore
+          retention-days: 14
 
       - name: Package binaries and generate timestamp version
         id: package
