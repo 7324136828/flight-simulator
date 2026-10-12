@@ -215,6 +215,8 @@ npx playwright show-report
 
 Browser tests print live progress and save an HTML report without starting a report server. The suite has a 10-minute limit; the release workflow also limits the browser-test step to 15 minutes and uploads the report and failure diagnostics.
 
+Windows CI runs Edge with one worker and the SwiftShader software graphics driver. On software GPUs, the simulator uses a smaller skybox, caps pixel density, and omits shadows and reflection-map baking to keep the real 3D scene responsive.
+
 ### Original Scenery Engine Tests
 
 ```powershell

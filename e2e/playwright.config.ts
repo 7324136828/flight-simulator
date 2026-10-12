@@ -40,6 +40,8 @@ export default defineConfig({
   fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
+  // GPU-less CI runners cannot efficiently render two flight decks at once.
+  workers: process.env.CI ? 1 : undefined,
   // Bound the whole run, including server startup and retries.
   globalTimeout: 10 * 60_000,
   reporter: [
@@ -63,6 +65,9 @@ export default defineConfig({
           use: {
             ...devices['Desktop Edge'],
             channel: 'msedge',
+            launchOptions: isWindows && process.env.CI
+              ? { args: ['--use-gl=angle', '--use-angle=swiftshader'] }
+              : {},
           },
         },
       ],
