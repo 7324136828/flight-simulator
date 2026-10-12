@@ -7,7 +7,8 @@ import unittest
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from threading import Barrier
-from unittest.mock import patch
+from types import SimpleNamespace
+from unittest.mock import Mock, patch
 
 from fastapi.testclient import TestClient
 
@@ -456,6 +457,147 @@ class PortSettingsTests(SettingsTestCase):
         self.assertIn(str(path), str(error.exception))
         self.assertEqual(path.read_bytes(), content.encode("utf-8"))
         self.assertFalse(list(path.parent.glob(".settings-*.tmp")))
+
+
+class SettingsPublicationTests(SettingsTestCase):
+    def setUp(self) -> None:
+        super().setUp()
+        self.user_values = {
+            "frontend_port": 4510,
+            "backend_port": 4520,
+            "theme": {"color": "blue", "enabled": True},
+            "custom": [1, "two", None],
+        }
+        self.path = self.write_settings(json.dumps(self.user_values))
+        self.original_content = self.path.read_bytes()
+        self.clock = SimpleNamespace(monotonic=Mock(return_value=0.0), sleep=Mock())
+        # Change only settings' platform view; pathlib still uses the host OS.
+        self.platform = SimpleNamespace(
+            name="nt", environ=os.environ, path=os.path, link=os.link,
+        )
+        for managed_patch in (
+            patch.object(settings, "os", self.platform),
+            patch.object(settings, "time", self.clock),
+            patch.object(settings, "settings_path", return_value=self.path),
+        ):
+            managed_patch.start()
+            self.addCleanup(managed_patch.stop)
+
+    @staticmethod
+    def sharing_error(code: int) -> OSError:
+        error = OSError("file is temporarily locked")
+        error.winerror = code
+        return error
+
+    def test_windows_replace_retries_sharing_errors_and_preserves_user_values(self) -> None:
+        original_replace = Path.replace
+        failures = [self.sharing_error(5), self.sharing_error(32)]
+        expected_data = self.root / "temp" / settings.APP_NAME
+        expected_values = {**self.user_values, "data_directory": str(expected_data)}
+
+        def locked_replace(source: Path, target: Path) -> Path:
+            self.assertEqual(target.read_bytes(), self.original_content)
+            self.assertEqual(json.loads(source.read_text(encoding="utf-8")), expected_values)
+            if failures:
+                raise failures.pop(0)
+            return original_replace(source, target)
+
+        with patch.object(Path, "replace", autospec=True, side_effect=locked_replace) as replace:
+            self.assertEqual(settings.load_settings().data_directory, expected_data)
+
+        self.assertEqual(replace.call_count, 3)
+        self.assertEqual(self.clock.sleep.call_count, 2)
+        self.assertEqual(json.loads(self.path.read_text(encoding="utf-8")), expected_values)
+        self.assertFalse(list(self.path.parent.glob(".settings-*.tmp")))
+
+    def test_windows_rename_retries_sharing_errors_and_publishes_complete_json(self) -> None:
+        self.path.unlink()
+        original_rename = Path.rename
+        failures = [self.sharing_error(5), self.sharing_error(32)]
+
+        def locked_rename(source: Path, target: Path) -> Path:
+            self.assertFalse(target.exists())
+            self.assertEqual(json.loads(source.read_text(encoding="utf-8")), self.user_values)
+            if failures:
+                raise failures.pop(0)
+            return original_rename(source, target)
+
+        with patch.object(Path, "rename", autospec=True, side_effect=locked_rename) as rename:
+            settings._write_json(self.path, self.user_values)
+
+        self.assertEqual(rename.call_count, 3)
+        self.assertEqual(self.clock.sleep.call_count, 2)
+        self.assertEqual(json.loads(self.path.read_text(encoding="utf-8")), self.user_values)
+        self.assertFalse(list(self.path.parent.glob(".settings-*.tmp")))
+
+    def test_windows_rename_retry_preserves_competing_initialization(self) -> None:
+        with patch.object(
+            Path, "rename", side_effect=[self.sharing_error(5), FileExistsError()],
+        ) as rename:
+            settings._write_json(self.path, {})
+
+        self.assertEqual(rename.call_count, 2)
+        self.clock.sleep.assert_called_once_with(0.05)
+        self.assertEqual(self.path.read_bytes(), self.original_content)
+        self.assertFalse(list(self.path.parent.glob(".settings-*.tmp")))
+
+    def test_windows_permanent_lock_preserves_settings_and_cleans_temp(self) -> None:
+        self.clock.monotonic.side_effect = [0.0, 0.0, 5.0, 5.0]
+        failure = self.sharing_error(5)
+        with patch.object(Path, "replace", side_effect=failure) as replace:
+            with self.assertRaises(settings.SettingsError) as error:
+                settings.load_settings()
+
+        self.assertIs(error.exception.__cause__, failure)
+        self.assertEqual(replace.call_count, 2)
+        self.clock.sleep.assert_called_once_with(0.05)
+        self.assertEqual(self.path.read_bytes(), self.original_content)
+        self.assertFalse(list(self.path.parent.glob(".settings-*.tmp")))
+
+    def test_windows_temp_cleanup_retries_sharing_errors(self) -> None:
+        original_unlink = Path.unlink
+        failures = [self.sharing_error(5), self.sharing_error(32)]
+
+        def locked_unlink(source: Path, *, missing_ok: bool = False) -> None:
+            self.assertTrue(missing_ok)
+            if failures:
+                raise failures.pop(0)
+            original_unlink(source, missing_ok=missing_ok)
+
+        with patch.object(Path, "rename", side_effect=FileExistsError()):
+            with patch.object(Path, "unlink", autospec=True, side_effect=locked_unlink) as unlink:
+                settings._write_json(self.path, {})
+
+        self.assertEqual(unlink.call_count, 3)
+        self.assertEqual(self.clock.sleep.call_count, 2)
+        self.assertEqual(self.path.read_bytes(), self.original_content)
+        self.assertFalse(list(self.path.parent.glob(".settings-*.tmp")))
+
+    def test_windows_unrelated_errors_fail_without_retry(self) -> None:
+        for failure in (OSError("write denied"), self.sharing_error(3)):
+            with self.subTest(winerror=getattr(failure, "winerror", None)):
+                with patch.object(Path, "replace", side_effect=failure) as replace:
+                    with self.assertRaises(settings.SettingsError) as error:
+                        settings.load_settings()
+                self.assertIs(error.exception.__cause__, failure)
+                replace.assert_called_once()
+                self.clock.sleep.assert_not_called()
+                self.assertEqual(self.path.read_bytes(), self.original_content)
+                self.assertFalse(list(self.path.parent.glob(".settings-*.tmp")))
+
+    def test_posix_does_not_retry_windows_sharing_errors(self) -> None:
+        self.platform.name = "posix"
+        failure = self.sharing_error(32)
+        with patch.object(Path, "replace", side_effect=failure) as replace:
+            with self.assertRaises(settings.SettingsError) as error:
+                settings.load_settings()
+
+        self.assertIs(error.exception.__cause__, failure)
+        replace.assert_called_once()
+        self.clock.monotonic.assert_not_called()
+        self.clock.sleep.assert_not_called()
+        self.assertEqual(self.path.read_bytes(), self.original_content)
+        self.assertFalse(list(self.path.parent.glob(".settings-*.tmp")))
 
 
 if __name__ == "__main__":
