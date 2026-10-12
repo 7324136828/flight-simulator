@@ -6,8 +6,12 @@ from pathlib import Path
 
 from fastapi.testclient import TestClient
 
-from backend.app.main import create_app
 from backend.app.store import CounterStore
+from backend.tests.storage_support import isolated_storage
+
+with tempfile.TemporaryDirectory() as bootstrap_directory:
+    with isolated_storage(Path(bootstrap_directory)):
+        from backend.app.main import create_app
 
 
 class CounterStoreTests(unittest.TestCase):
@@ -28,7 +32,7 @@ class CounterStoreTests(unittest.TestCase):
 
 class CounterApiTests(unittest.TestCase):
     def test_click_read_restart_and_clear_flow(self) -> None:
-        with tempfile.TemporaryDirectory() as directory:
+        with tempfile.TemporaryDirectory() as directory, isolated_storage(Path(directory)):
             database = Path(directory) / "counter.db"
             with TestClient(create_app(database)) as client:
                 self.assertEqual(client.get("/api/counter").json()["count"], 0)

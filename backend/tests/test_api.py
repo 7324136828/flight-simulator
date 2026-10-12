@@ -9,26 +9,25 @@ from pathlib import Path
 
 from fastapi.testclient import TestClient
 
-from backend.app.database import Database
-from backend.app.main import create_app
-from backend.app.utils.temp_manager import TempManager
+from backend.tests.storage_support import isolated_storage
 
-
-import shutil
+# The application currently initializes its services when imported.
+with tempfile.TemporaryDirectory() as bootstrap_directory:
+    with isolated_storage(Path(bootstrap_directory)):
+        from backend.app.main import create_app
 
 
 class FlightSimulatorApiTestCase(unittest.TestCase):
     def setUp(self):
         self.temp_dir = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp_dir.cleanup)
+        storage = isolated_storage(Path(self.temp_dir.name))
+        storage.__enter__()
+        self.addCleanup(storage.__exit__, None, None, None)
         self.db_path = Path(self.temp_dir.name) / "test.db"
         self.app = create_app(db_path=self.db_path)
         self.client = TestClient(self.app)
-
-    def tearDown(self):
-        try:
-            self.temp_dir.cleanup()
-        except Exception:
-            shutil.rmtree(self.temp_dir.name, ignore_errors=True)
+        self.addCleanup(self.client.close)
 
     def test_health(self):
         response = self.client.get("/api/health")
@@ -146,6 +145,8 @@ class FlightSimulatorApiTestCase(unittest.TestCase):
         res = self.client.post("/api/convert", files=files, data=data)
         self.assertEqual(res.status_code, 202)
         job_id = res.json()["id"]
+        job_directory = Path(res.json()["temp_dir"])
+        self.assertTrue(job_directory.is_relative_to(Path(self.temp_dir.name)))
 
         # Wait briefly for background pipeline task
         time.sleep(1.0)
@@ -184,6 +185,7 @@ class FlightSimulatorApiTestCase(unittest.TestCase):
         discard_res = self.client.post(f"/api/jobs/{job_id}/discard")
         self.assertEqual(discard_res.status_code, 200)
         self.assertEqual(discard_res.json()["status"], "discarded")
+        self.assertFalse(self.app.state.temp_manager.get_job_dir(job_id).exists())
 
         # Verify job is marked discarded
         job = self.client.get(f"/api/jobs/{job_id}").json()

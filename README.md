@@ -87,7 +87,7 @@ flight-simulator/
 
 ### 3. Data Hub & Background Conversion Pipeline
 - **Multiple Ingestion Modes**: Native file picker, drag-and-drop dropzone, and **Clipboard Paste (`Ctrl+V`)** for PDF documents, scenery containers (`.bgl`), and flight telemetry logs.
-- **Isolated System Temp Protocol**: All jobs execute within isolated directories under the operating system temporary directory (`tempfile.gettempdir() / "prod_jobs" / <uuid>`), guaranteeing zero workspace pollution.
+- **Isolated Job Storage**: Jobs and exports use `<data_directory>/jobs/<uuid>`, with inputs, work, outputs, and archives kept together. The folder defaults to `%TEMP%/flight-simulator` and can be changed in per-user settings.
 - **Active Job Monitor**: 4-stage visual progress timeline, animated percentage progress bar, and collapsible real-time execution log viewer.
 - **Lifecycle Controls**: **Continue** active jobs, **Discard & Purge** temporary directories, or **Download ZIP** archives upon completion.
 
@@ -110,10 +110,59 @@ chmod +x setup.sh run.sh
 ./run.sh
 ```
 
-The runner automatically selects available ports (defaulting to backend `8000` and frontend `5173`) and launches both services concurrently.
+The source runner reads saved ports (defaulting to backend `8000` and frontend `5173`), advances past busy ports, and launches both services concurrently. Both services bind to `0.0.0.0` by default; open one of the printed LAN frontend URLs on another device on the same network. Use `python run.py --host 127.0.0.1` for local-only access. Windows Firewall must allow the services on the network you use.
 
 - **Frontend Application**: <http://localhost:5173>
 - **Backend API & Docs**: <http://localhost:8000/docs>
+
+### Per-user settings and storage
+
+Windows settings are saved at `%APPDATA%\flight-simulator\settings.json`. On macOS/Linux, they use `$XDG_CONFIG_HOME/flight-simulator/settings.json` or `~/.config/flight-simulator/settings.json`.
+
+Every launcher creates `{}` if the settings file is absent, fills missing `frontend_port` and `backend_port` from the project's `port_mapping.json`, and rereads the saved ports before starting. Both portable profiles include their own copy of `port_mapping.json`. Existing values and unrelated keys are preserved. Invalid JSON, ports outside `1..65535`, or identical frontend/backend ports stop startup with an error.
+
+The default settings after initialization look like this (the TEMP path is expanded on your computer):
+
+```json
+{
+  "frontend_port": 5173,
+  "backend_port": 8000,
+  "data_directory": "C:\\Users\\your-name\\AppData\\Local\\Temp\\flight-simulator"
+}
+```
+
+Edit `data_directory` to select another folder, such as `D:\FlightData`, and restart the application. The shared `flight_simulator.db` holds the counter, logbook, and job history; conversion files and exports use the chosen folder's `jobs` subfolder. Relative folder paths resolve beside settings.json, and environment variables such as `%USERPROFILE%` are supported. TEMP storage can be cleared by Windows; choose a permanent folder for long-term flight history.
+
+Explicit command-line ports override environment variables, which override saved ports. The checked-in `.env.example` leaves the port and database overrides commented out so settings take effect. `DATABASE_PATH` remains an optional database override, followed by the legacy `COUNTER_DB_PATH`; both leave job storage in `data_directory`.
+
+Existing `data/flight_simulator.db` files and old `%TEMP%/prod_jobs` directories are not moved automatically. To keep the old logbook, set `data_directory` to the old `data` folder or copy the database to your selected folder while the app is stopped. A previously created `.env` containing `DATABASE_PATH`, `FRONTEND_PORT`, or `BACKEND_PORT` still overrides settings; remove those entries to use the saved configuration.
+
+### Portable Windows builds
+
+```powershell
+.\build.bat
+# Reuse already installed build dependencies:
+.\build.bat --skip-install
+```
+
+The build installs dependencies, typechecks and builds React, embeds the backend scenery maps in a PyInstaller executable, and creates both packages:
+
+| Folder | Binding | Launcher |
+| --- | --- | --- |
+| `dist/Debug` | `127.0.0.1`, local access | `dist/Debug/run.bat` |
+| `dist/Release` | `0.0.0.0`, LAN access | `dist/Release/run.bat` |
+
+Each package contains `server.exe`, `public/` (including frontend scenery), `run.bat`, `runtime.json`, and `port_mapping.json`. Keep the entire package together. Target computers need neither Python nor Node.js. Both launchers initialize settings before launching the executable, which serves the frontend and backend on the saved ports. Portable builds fail clearly if a configured port is busy; edit settings or close the conflicting service. Both profiles share the same per-user settings and storage.
+
+`.github/workflows/build-release.yml` builds and verifies both Windows x64 packages on pushes to `main` (including PR merges) and manual dispatch. It runs backend and browser tests, uploads ZIPs and SHA-256 checksums, and publishes a timestamped GitHub release after successful verification.
+
+### Differences from sample-react-python-project
+
+The LAN discovery, Debug/Release bindings, portable launcher, port initialization, packaging, and main-branch release workflow follow the sample. Flight Simulator keeps frontend port `5173` instead of the sample portable default `3000`, and uses the application name `flight-simulator`.
+
+Flight Simulator adds the 3D UI, scenery assets, conversion pipeline, and flight logbook. Its single `flight_simulator.db` stores all application records, while the sample uses `counter.db`. All simulator job/export files follow `data_directory`, and a missing `data_directory` is persisted in settings. Backend service initialization remains eager, as in the original simulator; the sample defers initialization to FastAPI lifespan. Existing data is not automatically migrated. Windows is the portable build target; macOS/Linux retain source setup and launch scripts.
+
+Frontend tooling remains on this project's Vite 5 / TypeScript 5 versions; the sample uses Vite 6 / TypeScript 7. The sample's `archive.bat` source-archive helper is not included; the build workflow creates the portable package ZIPs instead.
 
 ---
 
