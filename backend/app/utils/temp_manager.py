@@ -1,7 +1,7 @@
-"""Isolated system temporary directory manager.
+"""Isolated job directory manager.
 
-Manages job lifecycle directories under the operating system temporary folder:
-  <tempfile.gettempdir()>/prod_jobs/<job_id>/
+Manages job lifecycle directories under the configured application data folder:
+  <data_directory>/jobs/<job_id>/
   ├── inputs/
   ├── work/
   ├── outputs/
@@ -19,7 +19,7 @@ from ..config import get_temp_base_dir
 
 
 class TempManager:
-    """Manages isolated temp directory lifecycles for background jobs."""
+    """Manages isolated directory lifecycles for background jobs and exports."""
 
     def __init__(self, base_dir: Path | None = None) -> None:
         self.base_dir = base_dir or get_temp_base_dir()
@@ -83,7 +83,7 @@ class TempManager:
         return zip_path
 
     def purge_job_env(self, job_id: str) -> bool:
-        """Purges the isolated job folder from system temp."""
+        """Purges the isolated job folder from application data storage."""
         job_dir = self.get_job_dir(job_id)
         if job_dir.is_dir():
             shutil.rmtree(job_dir, ignore_errors=True)
